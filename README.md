@@ -2,7 +2,7 @@
 
 ## *Gregory L*
 
-**Description** It's a simple search engine that processes a limited collection of data and searches it for a word or a phrase.
+It's a simple search engine that processes a limited collection of data and searches it for a word or a phrase.
 
 Time spent: **--** hours spent in total
 
