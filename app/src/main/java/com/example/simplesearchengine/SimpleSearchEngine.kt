@@ -11,33 +11,58 @@ class SimpleSearchEngine {
         println("Enter all people: ")
         dataBase = MutableList(size) { readln() }
 
-        println()
-        println("Enter the number of search queries:")
-        searchForResult(readln().toInt())
+        menu()
     }
 
-    private fun searchForResult(numOfQueries: Int) {
-        repeat(numOfQueries) {
+    private fun menu() {
+        while (true) {
             println()
-            println("Enter data to search people:")
-            val dataEntered = readln()
-            for (i in dataBase) {
-                when {
-                    i.contains(dataEntered, true) -> searchResult.add(i)
-                    else -> continue
+            println(
+                """
+            |=== Menu ===
+            |1. Find a person
+            |2. Print all people
+            |0. Exit
+            """.trimMargin("|")
+            )
+            when (readln()) {
+                "1" -> searchForResult()
+                "2" -> printAllPeople()
+                "0" -> {
+                    println()
+                    println("Bye!")
+                    return
                 }
             }
-            if (searchResult.isNotEmpty()) {
-                println()
-                println("People found:")
-                searchResult.forEach {
-                    println(it)
-                }
-            } else {
-                println("No matching people found.")
-            }
-            searchResult.clear()
         }
+    }
+
+    private fun printAllPeople() {
+        println()
+        println("=== List of people ===")
+        dataBase.forEach { println(it) }
+    }
+
+    private fun searchForResult() {
+        println()
+        println("Enter data to search people:")
+        val dataEntered = readln()
+        for (i in dataBase) {
+            when {
+                i.contains(dataEntered, true) -> searchResult.add(i)
+                else -> continue
+            }
+        }
+        if (searchResult.isNotEmpty()) {
+            println()
+            println("People found:")
+            searchResult.forEach {
+                println(it)
+            }
+        } else {
+            println("No matching people found.")
+        }
+        searchResult.clear()
     }
 }
 
